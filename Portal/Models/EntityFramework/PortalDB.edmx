@@ -1,0 +1,1853 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PortalDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdvanceRequestForm">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="BranchID" Type="int" />
+          <Property Name="AdvanceTypeID" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+          <Property Name="Amount" Type="nvarchar" MaxLength="50" />
+          <Property Name="AdvanceDate" Type="datetime" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="IsPassive" Type="bit" />
+        </EntityType>
+        <EntityType Name="AdvanceType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="IsPassive" Type="bit" />
+        </EntityType>
+        <EntityType Name="Authorizations">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ModuleId" Type="int" Nullable="false" />
+          <Property Name="PageID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="IsRead" Type="bit" Nullable="false" />
+          <Property Name="IsCreate" Type="bit" Nullable="false" />
+          <Property Name="IsUpdate" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreatedUserID" Type="int" Nullable="false" />
+          <Property Name="UpdatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdateUserID" Type="int" Nullable="false" />
+          <Property Name="IsPassive" Type="bit" />
+        </EntityType>
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="IsPassive" Type="bit" />
+        </EntityType>
+        <EntityType Name="BranchRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SystemUserID" Type="int" Nullable="false" />
+          <Property Name="BrancID" Type="int" Nullable="false" />
+          <Property Name="IsRead" Type="bit" Nullable="false" />
+          <Property Name="IsCreat" Type="bit" Nullable="false" />
+          <Property Name="IsUpdate" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreatedUserID" Type="int" />
+          <Property Name="UpdatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdateUserID" Type="int" Nullable="false" />
+          <Property Name="IsPassive" Type="bit" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="IsPassive" Type="bit" />
+        </EntityType>
+        <EntityType Name="HolidayTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MinWorkDays" Type="int" />
+          <Property Name="MaxWorkDays" Type="int" />
+          <Property Name="MaxAge" Type="int" />
+          <Property Name="MinAge" Type="int" />
+          <Property Name="NoDays" Type="int" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="IsPassive" Type="bit" />
+        </EntityType>
+        <EntityType Name="InventoryRequest">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="BranchID" Type="int" />
+          <Property Name="InventorySection" Type="int" />
+          <Property Name="AddInventoryName" Type="nvarchar" MaxLength="100" />
+          <Property Name="InventoryDescription" Type="nvarchar" MaxLength="200" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="IsPassive" Type="bit" />
+        </EntityType>
+        <EntityType Name="InventoryTransactions">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SystemUserID" Type="int" />
+          <Property Name="InventoryID" Type="int" />
+          <Property Name="BranchId" Type="int" />
+          <Property Name="WhichGroup" Type="int" />
+          <Property Name="InIp" Type="nvarchar" MaxLength="100" />
+          <Property Name="OutIp" Type="nvarchar" MaxLength="100" />
+          <Property Name="TopIp" Type="nchar" MaxLength="100" />
+          <Property Name="BuyDate" Type="datetime" />
+          <Property Name="InvoiceNo" Type="nvarchar" MaxLength="100" />
+          <Property Name="InventoryCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="InventoryName" Type="nvarchar" MaxLength="100" />
+          <Property Name="UniversalIdentity" Type="nvarchar" MaxLength="100" />
+          <Property Name="OtherPrograms" Type="nvarchar" MaxLength="100" />
+          <Property Name="InventoryMacAddress" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreateUser" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="UpdateDateUserID" Type="int" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Path" Type="nvarchar" MaxLength="100" />
+          <Property Name="UpdateUser" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsPassive" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="InventoryTransactionValueMap">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InventoryTransactionId" Type="int" />
+          <Property Name="ValueId" Type="int" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="IsPassive" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="Modules">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Icon" Type="nvarchar" MaxLength="100" />
+          <Property Name="Data" Type="datetime" />
+          <Property Name="Queue" Type="int" />
+          <Property Name="IsPassive" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="Pages">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ModulId" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="PageGuid" Type="nvarchar" MaxLength="100" />
+          <Property Name="Icon" Type="nvarchar" MaxLength="100" />
+          <Property Name="Url" Type="nvarchar" MaxLength="200" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Queue" Type="int" />
+          <Property Name="IsPassive" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="PermissionRequestForm">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="BranchID" Type="int" />
+          <Property Name="PermissionTypeID" Type="int" />
+          <Property Name="PermissionStatusID" Type="int" />
+          <Property Name="DateStart" Type="datetime" />
+          <Property Name="DateFinish" Type="datetime" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="ApprovedDate" Type="datetime" />
+          <Property Name="IsPassive" Type="bit" />
+          <Property Name="IsApproved" Type="bit" />
+        </EntityType>
+        <EntityType Name="PermissionStatus">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="IsPassive" Type="bit" />
+        </EntityType>
+        <EntityType Name="PermissionType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="IsPassive" Type="bit" />
+        </EntityType>
+        <EntityType Name="Personel">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmanID" Type="int" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="100" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="100" />
+          <Property Name="BirthDate" Type="datetime" />
+          <Property Name="StartWorkDate" Type="datetime" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="IsPassive" Type="bit" />
+        </EntityType>
+        <EntityType Name="SeniorDepartment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentID" Type="int" />
+          <Property Name="SystemUserID" Type="int" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="IsPassive" Type="bit" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="SystemUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BranchID" Type="int" />
+          <Property Name="DepartmanID" Type="int" />
+          <Property Name="WhichGroupUserID" Type="int" />
+          <Property Name="PermissionNo" Type="int" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="100" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="100" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="BirthDate" Type="datetime" />
+          <Property Name="JopStartDate" Type="datetime" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="IsPassive" Type="bit" />
+          <Property Name="IsSuperAdmin" Type="bit" />
+        </EntityType>
+        <EntityType Name="Types">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="IsPassive" Type="bit" />
+        </EntityType>
+        <EntityType Name="Value">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeID" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="IsPassive" Type="bit" />
+        </EntityType>
+        <EntityType Name="WhichGroup">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="IsPassive" Type="bit" />
+        </EntityType>
+        <Association Name="FK_AdvanceRequestForm_AdvanceType">
+          <End Role="AdvanceType" Type="Self.AdvanceType" Multiplicity="0..1" />
+          <End Role="AdvanceRequestForm" Type="Self.AdvanceRequestForm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdvanceType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AdvanceRequestForm">
+              <PropertyRef Name="AdvanceTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdvanceRequestForm_Branch">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
+          <End Role="AdvanceRequestForm" Type="Self.AdvanceRequestForm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AdvanceRequestForm">
+              <PropertyRef Name="BranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Authorizations_Modules">
+          <End Role="Modules" Type="Self.Modules" Multiplicity="1" />
+          <End Role="Authorizations" Type="Self.Authorizations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modules">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Authorizations">
+              <PropertyRef Name="ModuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Authorizations_Pages">
+          <End Role="Pages" Type="Self.Pages" Multiplicity="1" />
+          <End Role="Authorizations" Type="Self.Authorizations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pages">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Authorizations">
+              <PropertyRef Name="PageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Authorizations_SystemUser">
+          <End Role="SystemUser" Type="Self.SystemUser" Multiplicity="1" />
+          <End Role="Authorizations" Type="Self.Authorizations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SystemUser">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Authorizations">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BranchRole_Branch">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="1" />
+          <End Role="BranchRole" Type="Self.BranchRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BranchRole">
+              <PropertyRef Name="BrancID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryRequest_Branch">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
+          <End Role="InventoryRequest" Type="Self.InventoryRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InventoryRequest">
+              <PropertyRef Name="BranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryRequest_Value">
+          <End Role="Value" Type="Self.Value" Multiplicity="0..1" />
+          <End Role="InventoryRequest" Type="Self.InventoryRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Value">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InventoryRequest">
+              <PropertyRef Name="InventorySection" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryTransactions_SystemUser">
+          <End Role="SystemUser" Type="Self.SystemUser" Multiplicity="0..1" />
+          <End Role="InventoryTransactions" Type="Self.InventoryTransactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SystemUser">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InventoryTransactions">
+              <PropertyRef Name="SystemUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryTransactions_WhichGroup">
+          <End Role="WhichGroup" Type="Self.WhichGroup" Multiplicity="0..1" />
+          <End Role="InventoryTransactions" Type="Self.InventoryTransactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WhichGroup">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InventoryTransactions">
+              <PropertyRef Name="WhichGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryTransactionValueMap_InventoryTransactions">
+          <End Role="InventoryTransactions" Type="Self.InventoryTransactions" Multiplicity="0..1" />
+          <End Role="InventoryTransactionValueMap" Type="Self.InventoryTransactionValueMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InventoryTransactions">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InventoryTransactionValueMap">
+              <PropertyRef Name="InventoryTransactionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryTransactionValueMap_Value">
+          <End Role="Value" Type="Self.Value" Multiplicity="0..1" />
+          <End Role="InventoryTransactionValueMap" Type="Self.InventoryTransactionValueMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Value">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InventoryTransactionValueMap">
+              <PropertyRef Name="ValueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pages_Modules">
+          <End Role="Modules" Type="Self.Modules" Multiplicity="0..1" />
+          <End Role="Pages" Type="Self.Pages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modules">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pages">
+              <PropertyRef Name="ModulId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PermissionRequestForm_Branch">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
+          <End Role="PermissionRequestForm" Type="Self.PermissionRequestForm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PermissionRequestForm">
+              <PropertyRef Name="BranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PermissionRequestForm_PermissionStatus">
+          <End Role="PermissionStatus" Type="Self.PermissionStatus" Multiplicity="0..1" />
+          <End Role="PermissionRequestForm" Type="Self.PermissionRequestForm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PermissionStatus">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PermissionRequestForm">
+              <PropertyRef Name="PermissionStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PermissionRequestForm_PermissionType">
+          <End Role="PermissionType" Type="Self.PermissionType" Multiplicity="0..1" />
+          <End Role="PermissionRequestForm" Type="Self.PermissionRequestForm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PermissionType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PermissionRequestForm">
+              <PropertyRef Name="PermissionTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Personel_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="Personel" Type="Self.Personel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Personel">
+              <PropertyRef Name="DepartmanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SeniorDepartment_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="SeniorDepartment" Type="Self.SeniorDepartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SeniorDepartment">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SeniorDepartment_SystemUser">
+          <End Role="SystemUser" Type="Self.SystemUser" Multiplicity="0..1" />
+          <End Role="SeniorDepartment" Type="Self.SeniorDepartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SystemUser">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SeniorDepartment">
+              <PropertyRef Name="SystemUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SystemUser_Branch">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
+          <End Role="SystemUser" Type="Self.SystemUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SystemUser">
+              <PropertyRef Name="BranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SystemUser_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="SystemUser" Type="Self.SystemUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SystemUser">
+              <PropertyRef Name="DepartmanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SystemUser_WhichGroup">
+          <End Role="WhichGroup" Type="Self.WhichGroup" Multiplicity="0..1" />
+          <End Role="SystemUser" Type="Self.SystemUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WhichGroup">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SystemUser">
+              <PropertyRef Name="WhichGroupUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Value_Types">
+          <End Role="Types" Type="Self.Types" Multiplicity="0..1" />
+          <End Role="Value" Type="Self.Value" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Types">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Value">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="PortalDBModelStoreContainer">
+          <EntitySet Name="AdvanceRequestForm" EntityType="Self.AdvanceRequestForm" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdvanceType" EntityType="Self.AdvanceType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Authorizations" EntityType="Self.Authorizations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Branch" EntityType="Self.Branch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BranchRole" EntityType="Self.BranchRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HolidayTable" EntityType="Self.HolidayTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InventoryRequest" EntityType="Self.InventoryRequest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InventoryTransactions" EntityType="Self.InventoryTransactions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InventoryTransactionValueMap" EntityType="Self.InventoryTransactionValueMap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Modules" EntityType="Self.Modules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pages" EntityType="Self.Pages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PermissionRequestForm" EntityType="Self.PermissionRequestForm" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PermissionStatus" EntityType="Self.PermissionStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PermissionType" EntityType="Self.PermissionType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Personel" EntityType="Self.Personel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SeniorDepartment" EntityType="Self.SeniorDepartment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SystemUser" EntityType="Self.SystemUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Types" EntityType="Self.Types" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Value" EntityType="Self.Value" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WhichGroup" EntityType="Self.WhichGroup" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AdvanceRequestForm_AdvanceType" Association="Self.FK_AdvanceRequestForm_AdvanceType">
+            <End Role="AdvanceType" EntitySet="AdvanceType" />
+            <End Role="AdvanceRequestForm" EntitySet="AdvanceRequestForm" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdvanceRequestForm_Branch" Association="Self.FK_AdvanceRequestForm_Branch">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="AdvanceRequestForm" EntitySet="AdvanceRequestForm" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Authorizations_Modules" Association="Self.FK_Authorizations_Modules">
+            <End Role="Modules" EntitySet="Modules" />
+            <End Role="Authorizations" EntitySet="Authorizations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Authorizations_Pages" Association="Self.FK_Authorizations_Pages">
+            <End Role="Pages" EntitySet="Pages" />
+            <End Role="Authorizations" EntitySet="Authorizations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Authorizations_SystemUser" Association="Self.FK_Authorizations_SystemUser">
+            <End Role="SystemUser" EntitySet="SystemUser" />
+            <End Role="Authorizations" EntitySet="Authorizations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BranchRole_Branch" Association="Self.FK_BranchRole_Branch">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="BranchRole" EntitySet="BranchRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryRequest_Branch" Association="Self.FK_InventoryRequest_Branch">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="InventoryRequest" EntitySet="InventoryRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryRequest_Value" Association="Self.FK_InventoryRequest_Value">
+            <End Role="Value" EntitySet="Value" />
+            <End Role="InventoryRequest" EntitySet="InventoryRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryTransactions_SystemUser" Association="Self.FK_InventoryTransactions_SystemUser">
+            <End Role="SystemUser" EntitySet="SystemUser" />
+            <End Role="InventoryTransactions" EntitySet="InventoryTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryTransactions_WhichGroup" Association="Self.FK_InventoryTransactions_WhichGroup">
+            <End Role="WhichGroup" EntitySet="WhichGroup" />
+            <End Role="InventoryTransactions" EntitySet="InventoryTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryTransactionValueMap_InventoryTransactions" Association="Self.FK_InventoryTransactionValueMap_InventoryTransactions">
+            <End Role="InventoryTransactions" EntitySet="InventoryTransactions" />
+            <End Role="InventoryTransactionValueMap" EntitySet="InventoryTransactionValueMap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryTransactionValueMap_Value" Association="Self.FK_InventoryTransactionValueMap_Value">
+            <End Role="Value" EntitySet="Value" />
+            <End Role="InventoryTransactionValueMap" EntitySet="InventoryTransactionValueMap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pages_Modules" Association="Self.FK_Pages_Modules">
+            <End Role="Modules" EntitySet="Modules" />
+            <End Role="Pages" EntitySet="Pages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermissionRequestForm_Branch" Association="Self.FK_PermissionRequestForm_Branch">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="PermissionRequestForm" EntitySet="PermissionRequestForm" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermissionRequestForm_PermissionStatus" Association="Self.FK_PermissionRequestForm_PermissionStatus">
+            <End Role="PermissionStatus" EntitySet="PermissionStatus" />
+            <End Role="PermissionRequestForm" EntitySet="PermissionRequestForm" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermissionRequestForm_PermissionType" Association="Self.FK_PermissionRequestForm_PermissionType">
+            <End Role="PermissionType" EntitySet="PermissionType" />
+            <End Role="PermissionRequestForm" EntitySet="PermissionRequestForm" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Personel_Department" Association="Self.FK_Personel_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Personel" EntitySet="Personel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SeniorDepartment_Department" Association="Self.FK_SeniorDepartment_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="SeniorDepartment" EntitySet="SeniorDepartment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SeniorDepartment_SystemUser" Association="Self.FK_SeniorDepartment_SystemUser">
+            <End Role="SystemUser" EntitySet="SystemUser" />
+            <End Role="SeniorDepartment" EntitySet="SeniorDepartment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SystemUser_Branch" Association="Self.FK_SystemUser_Branch">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="SystemUser" EntitySet="SystemUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SystemUser_Department" Association="Self.FK_SystemUser_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="SystemUser" EntitySet="SystemUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SystemUser_WhichGroup" Association="Self.FK_SystemUser_WhichGroup">
+            <End Role="WhichGroup" EntitySet="WhichGroup" />
+            <End Role="SystemUser" EntitySet="SystemUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Value_Types" Association="Self.FK_Value_Types">
+            <End Role="Types" EntitySet="Types" />
+            <End Role="Value" EntitySet="Value" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PortalDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="PortalDB" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(PortalDBModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(PortalDBModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="AdvanceRequestForm" EntityType="PortalDBModel.AdvanceRequestForm" />
+          <EntitySet Name="AdvanceType" EntityType="PortalDBModel.AdvanceType" />
+          <EntitySet Name="Authorizations" EntityType="PortalDBModel.Authorizations" />
+          <EntitySet Name="Branch" EntityType="PortalDBModel.Branch" />
+          <EntitySet Name="BranchRole" EntityType="PortalDBModel.BranchRole" />
+          <EntitySet Name="InventoryRequest" EntityType="PortalDBModel.InventoryRequest" />
+          <EntitySet Name="InventoryTransactions" EntityType="PortalDBModel.InventoryTransactions" />
+          <EntitySet Name="InventoryTransactionValueMap" EntityType="PortalDBModel.InventoryTransactionValueMap" />
+          <EntitySet Name="Modules" EntityType="PortalDBModel.Modules" />
+          <EntitySet Name="Pages" EntityType="PortalDBModel.Pages" />
+          <EntitySet Name="PermissionRequestForm" EntityType="PortalDBModel.PermissionRequestForm" />
+          <EntitySet Name="PermissionStatus" EntityType="PortalDBModel.PermissionStatus" />
+          <EntitySet Name="PermissionType" EntityType="PortalDBModel.PermissionType" />
+          <EntitySet Name="Personel" EntityType="PortalDBModel.Personel" />
+          <EntitySet Name="sysdiagrams" EntityType="PortalDBModel.sysdiagrams" />
+          <EntitySet Name="Types" EntityType="PortalDBModel.Types" />
+          <EntitySet Name="Value" EntityType="PortalDBModel.Value" />
+          <EntitySet Name="WhichGroup" EntityType="PortalDBModel.WhichGroup" />
+          <AssociationSet Name="FK_AdvanceRequestForm_AdvanceType" Association="PortalDBModel.FK_AdvanceRequestForm_AdvanceType">
+            <End Role="AdvanceType" EntitySet="AdvanceType" />
+            <End Role="AdvanceRequestForm" EntitySet="AdvanceRequestForm" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdvanceRequestForm_Branch" Association="PortalDBModel.FK_AdvanceRequestForm_Branch">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="AdvanceRequestForm" EntitySet="AdvanceRequestForm" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Authorizations_Modules" Association="PortalDBModel.FK_Authorizations_Modules">
+            <End Role="Modules" EntitySet="Modules" />
+            <End Role="Authorizations" EntitySet="Authorizations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Authorizations_Pages" Association="PortalDBModel.FK_Authorizations_Pages">
+            <End Role="Pages" EntitySet="Pages" />
+            <End Role="Authorizations" EntitySet="Authorizations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BranchRole_Branch" Association="PortalDBModel.FK_BranchRole_Branch">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="BranchRole" EntitySet="BranchRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryRequest_Branch" Association="PortalDBModel.FK_InventoryRequest_Branch">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="InventoryRequest" EntitySet="InventoryRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermissionRequestForm_Branch" Association="PortalDBModel.FK_PermissionRequestForm_Branch">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="PermissionRequestForm" EntitySet="PermissionRequestForm" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryRequest_Value" Association="PortalDBModel.FK_InventoryRequest_Value">
+            <End Role="Value" EntitySet="Value" />
+            <End Role="InventoryRequest" EntitySet="InventoryRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryTransactions_WhichGroup" Association="PortalDBModel.FK_InventoryTransactions_WhichGroup">
+            <End Role="WhichGroup" EntitySet="WhichGroup" />
+            <End Role="InventoryTransactions" EntitySet="InventoryTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryTransactionValueMap_InventoryTransactions" Association="PortalDBModel.FK_InventoryTransactionValueMap_InventoryTransactions">
+            <End Role="InventoryTransactions" EntitySet="InventoryTransactions" />
+            <End Role="InventoryTransactionValueMap" EntitySet="InventoryTransactionValueMap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryTransactionValueMap_Value" Association="PortalDBModel.FK_InventoryTransactionValueMap_Value">
+            <End Role="Value" EntitySet="Value" />
+            <End Role="InventoryTransactionValueMap" EntitySet="InventoryTransactionValueMap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pages_Modules" Association="PortalDBModel.FK_Pages_Modules">
+            <End Role="Modules" EntitySet="Modules" />
+            <End Role="Pages" EntitySet="Pages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermissionRequestForm_PermissionStatus" Association="PortalDBModel.FK_PermissionRequestForm_PermissionStatus">
+            <End Role="PermissionStatus" EntitySet="PermissionStatus" />
+            <End Role="PermissionRequestForm" EntitySet="PermissionRequestForm" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermissionRequestForm_PermissionType" Association="PortalDBModel.FK_PermissionRequestForm_PermissionType">
+            <End Role="PermissionType" EntitySet="PermissionType" />
+            <End Role="PermissionRequestForm" EntitySet="PermissionRequestForm" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Value_Types" Association="PortalDBModel.FK_Value_Types">
+            <End Role="Types" EntitySet="Types" />
+            <End Role="Value" EntitySet="Value" />
+          </AssociationSet>
+          <EntitySet Name="HolidayTable" EntityType="PortalDBModel.HolidayTable" />
+          <EntitySet Name="Department" EntityType="PortalDBModel.Department" />
+          <EntitySet Name="SystemUser" EntityType="PortalDBModel.SystemUser" />
+          <AssociationSet Name="FK_Authorizations_SystemUser" Association="PortalDBModel.FK_Authorizations_SystemUser">
+            <End Role="SystemUser" EntitySet="SystemUser" />
+            <End Role="Authorizations" EntitySet="Authorizations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SystemUser_Branch" Association="PortalDBModel.FK_SystemUser_Branch">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="SystemUser" EntitySet="SystemUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Personel_Department" Association="PortalDBModel.FK_Personel_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Personel" EntitySet="Personel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SystemUser_Department" Association="PortalDBModel.FK_SystemUser_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="SystemUser" EntitySet="SystemUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryTransactions_SystemUser" Association="PortalDBModel.FK_InventoryTransactions_SystemUser">
+            <End Role="SystemUser" EntitySet="SystemUser" />
+            <End Role="InventoryTransactions" EntitySet="InventoryTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SystemUser_WhichGroup" Association="PortalDBModel.FK_SystemUser_WhichGroup">
+            <End Role="WhichGroup" EntitySet="WhichGroup" />
+            <End Role="SystemUser" EntitySet="SystemUser" />
+          </AssociationSet>
+          <EntitySet Name="SeniorDepartment" EntityType="PortalDBModel.SeniorDepartment" />
+          <AssociationSet Name="FK_SeniorDepartment_Department" Association="PortalDBModel.FK_SeniorDepartment_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="SeniorDepartment" EntitySet="SeniorDepartment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SeniorDepartment_SystemUser" Association="PortalDBModel.FK_SeniorDepartment_SystemUser">
+            <End Role="SystemUser" EntitySet="SystemUser" />
+            <End Role="SeniorDepartment" EntitySet="SeniorDepartment" />
+          </AssociationSet>
+          </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="AdvanceRequestForm">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="BranchID" Type="Int32" />
+          <Property Name="AdvanceTypeID" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdvanceDate" Type="DateTime" Precision="3" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="IsPassive" Type="Boolean" />
+          <NavigationProperty Name="AdvanceType" Relationship="PortalDBModel.FK_AdvanceRequestForm_AdvanceType" FromRole="AdvanceRequestForm" ToRole="AdvanceType" />
+          <NavigationProperty Name="Branch" Relationship="PortalDBModel.FK_AdvanceRequestForm_Branch" FromRole="AdvanceRequestForm" ToRole="Branch" />
+        </EntityType>
+        <EntityType Name="AdvanceType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="IsPassive" Type="Boolean" />
+          <NavigationProperty Name="AdvanceRequestForm" Relationship="PortalDBModel.FK_AdvanceRequestForm_AdvanceType" FromRole="AdvanceType" ToRole="AdvanceRequestForm" />
+        </EntityType>
+        <EntityType Name="Authorizations">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModuleId" Type="Int32" Nullable="false" />
+          <Property Name="PageID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="IsRead" Type="Boolean" Nullable="false" />
+          <Property Name="IsCreate" Type="Boolean" Nullable="false" />
+          <Property Name="IsUpdate" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedUserID" Type="Int32" Nullable="false" />
+          <Property Name="UpdatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateUserID" Type="Int32" Nullable="false" />
+          <Property Name="IsPassive" Type="Boolean" />
+          <NavigationProperty Name="Modules" Relationship="PortalDBModel.FK_Authorizations_Modules" FromRole="Authorizations" ToRole="Modules" />
+          <NavigationProperty Name="Pages" Relationship="PortalDBModel.FK_Authorizations_Pages" FromRole="Authorizations" ToRole="Pages" />
+          <NavigationProperty Name="SystemUser" Relationship="PortalDBModel.FK_Authorizations_SystemUser" FromRole="Authorizations" ToRole="SystemUser" />
+        </EntityType>
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="IsPassive" Type="Boolean" />
+          <NavigationProperty Name="AdvanceRequestForm" Relationship="PortalDBModel.FK_AdvanceRequestForm_Branch" FromRole="Branch" ToRole="AdvanceRequestForm" />
+          <NavigationProperty Name="BranchRole" Relationship="PortalDBModel.FK_BranchRole_Branch" FromRole="Branch" ToRole="BranchRole" />
+          <NavigationProperty Name="InventoryRequest" Relationship="PortalDBModel.FK_InventoryRequest_Branch" FromRole="Branch" ToRole="InventoryRequest" />
+          <NavigationProperty Name="PermissionRequestForm" Relationship="PortalDBModel.FK_PermissionRequestForm_Branch" FromRole="Branch" ToRole="PermissionRequestForm" />
+          <NavigationProperty Name="SystemUser" Relationship="PortalDBModel.FK_SystemUser_Branch" FromRole="Branch" ToRole="SystemUser" />
+        </EntityType>
+        <EntityType Name="BranchRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SystemUserID" Type="Int32" Nullable="false" />
+          <Property Name="BrancID" Type="Int32" Nullable="false" />
+          <Property Name="IsRead" Type="Boolean" Nullable="false" />
+          <Property Name="IsCreat" Type="Boolean" Nullable="false" />
+          <Property Name="IsUpdate" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedUserID" Type="Int32" />
+          <Property Name="UpdatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateUserID" Type="Int32" Nullable="false" />
+          <Property Name="IsPassive" Type="Boolean" />
+          <NavigationProperty Name="Branch" Relationship="PortalDBModel.FK_BranchRole_Branch" FromRole="BranchRole" ToRole="Branch" />
+        </EntityType>
+        <EntityType Name="InventoryRequest">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="BranchID" Type="Int32" />
+          <Property Name="InventorySection" Type="Int32" />
+          <Property Name="AddInventoryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="InventoryDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="IsPassive" Type="Boolean" />
+          <NavigationProperty Name="Branch" Relationship="PortalDBModel.FK_InventoryRequest_Branch" FromRole="InventoryRequest" ToRole="Branch" />
+          <NavigationProperty Name="Value" Relationship="PortalDBModel.FK_InventoryRequest_Value" FromRole="InventoryRequest" ToRole="Value" />
+        </EntityType>
+        <EntityType Name="InventoryTransactions">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SystemUserID" Type="Int32" />
+          <Property Name="InventoryID" Type="Int32" />
+          <Property Name="BranchId" Type="Int32" />
+          <Property Name="WhichGroup" Type="Int32" />
+          <Property Name="InIp" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="OutIp" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TopIp" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="BuyDate" Type="DateTime" Precision="3" />
+          <Property Name="InvoiceNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="InventoryCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="InventoryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UniversalIdentity" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="OtherPrograms" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="InventoryMacAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreateUser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateDateUserID" Type="Int32" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Path" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateUser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsPassive" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="WhichGroup1" Relationship="PortalDBModel.FK_InventoryTransactions_WhichGroup" FromRole="InventoryTransactions" ToRole="WhichGroup" />
+          <NavigationProperty Name="InventoryTransactionValueMap" Relationship="PortalDBModel.FK_InventoryTransactionValueMap_InventoryTransactions" FromRole="InventoryTransactions" ToRole="InventoryTransactionValueMap" />
+          <NavigationProperty Name="SystemUser" Relationship="PortalDBModel.FK_InventoryTransactions_SystemUser" FromRole="InventoryTransactions" ToRole="SystemUser" />
+        </EntityType>
+        <EntityType Name="InventoryTransactionValueMap">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InventoryTransactionId" Type="Int32" />
+          <Property Name="ValueId" Type="Int32" />
+          <Property Name="TypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="IsPassive" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="InventoryTransactions" Relationship="PortalDBModel.FK_InventoryTransactionValueMap_InventoryTransactions" FromRole="InventoryTransactionValueMap" ToRole="InventoryTransactions" />
+          <NavigationProperty Name="Value" Relationship="PortalDBModel.FK_InventoryTransactionValueMap_Value" FromRole="InventoryTransactionValueMap" ToRole="Value" />
+        </EntityType>
+        <EntityType Name="Modules">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Icon" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Data" Type="DateTime" Precision="3" />
+          <Property Name="Queue" Type="Int32" />
+          <Property Name="IsPassive" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="Authorizations" Relationship="PortalDBModel.FK_Authorizations_Modules" FromRole="Modules" ToRole="Authorizations" />
+          <NavigationProperty Name="Pages" Relationship="PortalDBModel.FK_Pages_Modules" FromRole="Modules" ToRole="Pages" />
+        </EntityType>
+        <EntityType Name="Pages">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModulId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PageGuid" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Icon" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Url" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Queue" Type="Int32" />
+          <Property Name="IsPassive" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="Authorizations" Relationship="PortalDBModel.FK_Authorizations_Pages" FromRole="Pages" ToRole="Authorizations" />
+          <NavigationProperty Name="Modules" Relationship="PortalDBModel.FK_Pages_Modules" FromRole="Pages" ToRole="Modules" />
+        </EntityType>
+        <EntityType Name="PermissionRequestForm">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="BranchID" Type="Int32" />
+          <Property Name="PermissionTypeID" Type="Int32" />
+          <Property Name="PermissionStatusID" Type="Int32" />
+          <Property Name="DateStart" Type="DateTime" Precision="3" />
+          <Property Name="DateFinish" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="IsPassive" Type="Boolean" />
+          <NavigationProperty Name="Branch" Relationship="PortalDBModel.FK_PermissionRequestForm_Branch" FromRole="PermissionRequestForm" ToRole="Branch" />
+          <NavigationProperty Name="PermissionStatus" Relationship="PortalDBModel.FK_PermissionRequestForm_PermissionStatus" FromRole="PermissionRequestForm" ToRole="PermissionStatus" />
+          <NavigationProperty Name="PermissionType" Relationship="PortalDBModel.FK_PermissionRequestForm_PermissionType" FromRole="PermissionRequestForm" ToRole="PermissionType" />
+          <Property Name="ApprovedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsApproved" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="PermissionStatus">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="IsPassive" Type="Boolean" />
+          <NavigationProperty Name="PermissionRequestForm" Relationship="PortalDBModel.FK_PermissionRequestForm_PermissionStatus" FromRole="PermissionStatus" ToRole="PermissionRequestForm" />
+        </EntityType>
+        <EntityType Name="PermissionType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="IsPassive" Type="Boolean" />
+          <NavigationProperty Name="PermissionRequestForm" Relationship="PortalDBModel.FK_PermissionRequestForm_PermissionType" FromRole="PermissionType" ToRole="PermissionRequestForm" />
+        </EntityType>
+        <EntityType Name="Personel">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmanID" Type="Int32" />
+          <Property Name="Mail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDate" Type="DateTime" Precision="3" />
+          <Property Name="StartWorkDate" Type="DateTime" Precision="3" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="IsPassive" Type="Boolean" />
+          <NavigationProperty Name="Department" Relationship="PortalDBModel.FK_Personel_Department" FromRole="Personel" ToRole="Department" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Types">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="IsPassive" Type="Boolean" />
+          <NavigationProperty Name="Value" Relationship="PortalDBModel.FK_Value_Types" FromRole="Types" ToRole="Value" />
+        </EntityType>
+        <EntityType Name="Value">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="IsPassive" Type="Boolean" />
+          <NavigationProperty Name="InventoryRequest" Relationship="PortalDBModel.FK_InventoryRequest_Value" FromRole="Value" ToRole="InventoryRequest" />
+          <NavigationProperty Name="InventoryTransactionValueMap" Relationship="PortalDBModel.FK_InventoryTransactionValueMap_Value" FromRole="Value" ToRole="InventoryTransactionValueMap" />
+          <NavigationProperty Name="Types" Relationship="PortalDBModel.FK_Value_Types" FromRole="Value" ToRole="Types" />
+        </EntityType>
+        <EntityType Name="WhichGroup">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="IsPassive" Type="Boolean" />
+          <NavigationProperty Name="InventoryTransactions" Relationship="PortalDBModel.FK_InventoryTransactions_WhichGroup" FromRole="WhichGroup" ToRole="InventoryTransactions" />
+          <NavigationProperty Name="SystemUser" Relationship="PortalDBModel.FK_SystemUser_WhichGroup" FromRole="WhichGroup" ToRole="SystemUser" />
+        </EntityType>
+        <Association Name="FK_AdvanceRequestForm_AdvanceType">
+          <End Type="PortalDBModel.AdvanceType" Role="AdvanceType" Multiplicity="0..1" />
+          <End Type="PortalDBModel.AdvanceRequestForm" Role="AdvanceRequestForm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdvanceType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AdvanceRequestForm">
+              <PropertyRef Name="AdvanceTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdvanceRequestForm_Branch">
+          <End Type="PortalDBModel.Branch" Role="Branch" Multiplicity="0..1" />
+          <End Type="PortalDBModel.AdvanceRequestForm" Role="AdvanceRequestForm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AdvanceRequestForm">
+              <PropertyRef Name="BranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Authorizations_Modules">
+          <End Type="PortalDBModel.Modules" Role="Modules" Multiplicity="1" />
+          <End Type="PortalDBModel.Authorizations" Role="Authorizations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modules">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Authorizations">
+              <PropertyRef Name="ModuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Authorizations_Pages">
+          <End Type="PortalDBModel.Pages" Role="Pages" Multiplicity="1" />
+          <End Type="PortalDBModel.Authorizations" Role="Authorizations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pages">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Authorizations">
+              <PropertyRef Name="PageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BranchRole_Branch">
+          <End Type="PortalDBModel.Branch" Role="Branch" Multiplicity="1" />
+          <End Type="PortalDBModel.BranchRole" Role="BranchRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BranchRole">
+              <PropertyRef Name="BrancID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryRequest_Branch">
+          <End Type="PortalDBModel.Branch" Role="Branch" Multiplicity="0..1" />
+          <End Type="PortalDBModel.InventoryRequest" Role="InventoryRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InventoryRequest">
+              <PropertyRef Name="BranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PermissionRequestForm_Branch">
+          <End Type="PortalDBModel.Branch" Role="Branch" Multiplicity="0..1" />
+          <End Type="PortalDBModel.PermissionRequestForm" Role="PermissionRequestForm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PermissionRequestForm">
+              <PropertyRef Name="BranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryRequest_Value">
+          <End Type="PortalDBModel.Value" Role="Value" Multiplicity="0..1" />
+          <End Type="PortalDBModel.InventoryRequest" Role="InventoryRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Value">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InventoryRequest">
+              <PropertyRef Name="InventorySection" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryTransactions_WhichGroup">
+          <End Type="PortalDBModel.WhichGroup" Role="WhichGroup" Multiplicity="0..1" />
+          <End Type="PortalDBModel.InventoryTransactions" Role="InventoryTransactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WhichGroup">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InventoryTransactions">
+              <PropertyRef Name="WhichGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryTransactionValueMap_InventoryTransactions">
+          <End Type="PortalDBModel.InventoryTransactions" Role="InventoryTransactions" Multiplicity="0..1" />
+          <End Type="PortalDBModel.InventoryTransactionValueMap" Role="InventoryTransactionValueMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InventoryTransactions">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InventoryTransactionValueMap">
+              <PropertyRef Name="InventoryTransactionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryTransactionValueMap_Value">
+          <End Type="PortalDBModel.Value" Role="Value" Multiplicity="0..1" />
+          <End Type="PortalDBModel.InventoryTransactionValueMap" Role="InventoryTransactionValueMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Value">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InventoryTransactionValueMap">
+              <PropertyRef Name="ValueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pages_Modules">
+          <End Type="PortalDBModel.Modules" Role="Modules" Multiplicity="0..1" />
+          <End Type="PortalDBModel.Pages" Role="Pages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modules">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pages">
+              <PropertyRef Name="ModulId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PermissionRequestForm_PermissionStatus">
+          <End Type="PortalDBModel.PermissionStatus" Role="PermissionStatus" Multiplicity="0..1" />
+          <End Type="PortalDBModel.PermissionRequestForm" Role="PermissionRequestForm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PermissionStatus">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PermissionRequestForm">
+              <PropertyRef Name="PermissionStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PermissionRequestForm_PermissionType">
+          <End Type="PortalDBModel.PermissionType" Role="PermissionType" Multiplicity="0..1" />
+          <End Type="PortalDBModel.PermissionRequestForm" Role="PermissionRequestForm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PermissionType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PermissionRequestForm">
+              <PropertyRef Name="PermissionTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Value_Types">
+          <End Type="PortalDBModel.Types" Role="Types" Multiplicity="0..1" />
+          <End Type="PortalDBModel.Value" Role="Value" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Types">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Value">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="HolidayTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MinWorkDays" Type="Int32" />
+          <Property Name="MaxWorkDays" Type="Int32" />
+          <Property Name="MaxAge" Type="Int32" />
+          <Property Name="MinAge" Type="Int32" />
+          <Property Name="NoDays" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="IsPassive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="IsPassive" Type="Boolean" />
+          <NavigationProperty Name="Personel" Relationship="PortalDBModel.FK_Personel_Department" FromRole="Department" ToRole="Personel" />
+          <NavigationProperty Name="SystemUser" Relationship="PortalDBModel.FK_SystemUser_Department" FromRole="Department" ToRole="SystemUser" />
+          <NavigationProperty Name="SeniorDepartment" Relationship="PortalDBModel.FK_SeniorDepartment_Department" FromRole="Department" ToRole="SeniorDepartment" />
+        </EntityType>
+        <EntityType Name="SystemUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BranchID" Type="Int32" />
+          <Property Name="DepartmanID" Type="Int32" />
+          <Property Name="WhichGroupUserID" Type="Int32" />
+          <Property Name="PermissionNo" Type="Int32" />
+          <Property Name="Mail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDate" Type="DateTime" Precision="3" />
+          <Property Name="JopStartDate" Type="DateTime" Precision="3" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="IsPassive" Type="Boolean" />
+          <Property Name="IsSuperAdmin" Type="Boolean" />
+          <NavigationProperty Name="Authorizations" Relationship="PortalDBModel.FK_Authorizations_SystemUser" FromRole="SystemUser" ToRole="Authorizations" />
+          <NavigationProperty Name="Branch" Relationship="PortalDBModel.FK_SystemUser_Branch" FromRole="SystemUser" ToRole="Branch" />
+          <NavigationProperty Name="Department" Relationship="PortalDBModel.FK_SystemUser_Department" FromRole="SystemUser" ToRole="Department" />
+          <NavigationProperty Name="InventoryTransactions" Relationship="PortalDBModel.FK_InventoryTransactions_SystemUser" FromRole="SystemUser" ToRole="InventoryTransactions" />
+          <NavigationProperty Name="WhichGroup" Relationship="PortalDBModel.FK_SystemUser_WhichGroup" FromRole="SystemUser" ToRole="WhichGroup" />
+          <NavigationProperty Name="SeniorDepartment" Relationship="PortalDBModel.FK_SeniorDepartment_SystemUser" FromRole="SystemUser" ToRole="SeniorDepartment" />
+        </EntityType>
+        <Association Name="FK_Authorizations_SystemUser">
+          <End Type="PortalDBModel.SystemUser" Role="SystemUser" Multiplicity="1" />
+          <End Type="PortalDBModel.Authorizations" Role="Authorizations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SystemUser">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Authorizations">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SystemUser_Branch">
+          <End Type="PortalDBModel.Branch" Role="Branch" Multiplicity="0..1" />
+          <End Type="PortalDBModel.SystemUser" Role="SystemUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SystemUser">
+              <PropertyRef Name="BranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Personel_Department">
+          <End Type="PortalDBModel.Department" Role="Department" Multiplicity="0..1" />
+          <End Type="PortalDBModel.Personel" Role="Personel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Personel">
+              <PropertyRef Name="DepartmanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SystemUser_Department">
+          <End Type="PortalDBModel.Department" Role="Department" Multiplicity="0..1" />
+          <End Type="PortalDBModel.SystemUser" Role="SystemUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SystemUser">
+              <PropertyRef Name="DepartmanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryTransactions_SystemUser">
+          <End Type="PortalDBModel.SystemUser" Role="SystemUser" Multiplicity="0..1" />
+          <End Type="PortalDBModel.InventoryTransactions" Role="InventoryTransactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SystemUser">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InventoryTransactions">
+              <PropertyRef Name="SystemUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SystemUser_WhichGroup">
+          <End Type="PortalDBModel.WhichGroup" Role="WhichGroup" Multiplicity="0..1" />
+          <End Type="PortalDBModel.SystemUser" Role="SystemUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WhichGroup">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SystemUser">
+              <PropertyRef Name="WhichGroupUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SeniorDepartment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentID" Type="Int32" />
+          <Property Name="SystemUserID" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="IsPassive" Type="Boolean" />
+          <NavigationProperty Name="Department" Relationship="PortalDBModel.FK_SeniorDepartment_Department" FromRole="SeniorDepartment" ToRole="Department" />
+          <NavigationProperty Name="SystemUser" Relationship="PortalDBModel.FK_SeniorDepartment_SystemUser" FromRole="SeniorDepartment" ToRole="SystemUser" />
+        </EntityType>
+        <Association Name="FK_SeniorDepartment_Department">
+          <End Type="PortalDBModel.Department" Role="Department" Multiplicity="0..1" />
+          <End Type="PortalDBModel.SeniorDepartment" Role="SeniorDepartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SeniorDepartment">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SeniorDepartment_SystemUser">
+          <End Type="PortalDBModel.SystemUser" Role="SystemUser" Multiplicity="0..1" />
+          <End Type="PortalDBModel.SeniorDepartment" Role="SeniorDepartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SystemUser">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SeniorDepartment">
+              <PropertyRef Name="SystemUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PortalDBModelStoreContainer" CdmEntityContainer="PortalDB">
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="PortalDBModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="PortalDBModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="PortalDBModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="PortalDBModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PortalDBModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="PortalDBModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PortalDBModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="PortalDBModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="PortalDBModel.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="AdvanceRequestForm">
+            <EntityTypeMapping TypeName="PortalDBModel.AdvanceRequestForm">
+              <MappingFragment StoreEntitySet="AdvanceRequestForm">
+                <ScalarProperty Name="IsPassive" ColumnName="IsPassive" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="AdvanceDate" ColumnName="AdvanceDate" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="AdvanceTypeID" ColumnName="AdvanceTypeID" />
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdvanceType">
+            <EntityTypeMapping TypeName="PortalDBModel.AdvanceType">
+              <MappingFragment StoreEntitySet="AdvanceType">
+                <ScalarProperty Name="IsPassive" ColumnName="IsPassive" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Authorizations">
+            <EntityTypeMapping TypeName="PortalDBModel.Authorizations">
+              <MappingFragment StoreEntitySet="Authorizations">
+                <ScalarProperty Name="IsPassive" ColumnName="IsPassive" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
+                <ScalarProperty Name="CreatedUserID" ColumnName="CreatedUserID" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsUpdate" ColumnName="IsUpdate" />
+                <ScalarProperty Name="IsCreate" ColumnName="IsCreate" />
+                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="PageID" ColumnName="PageID" />
+                <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Branch">
+            <EntityTypeMapping TypeName="PortalDBModel.Branch">
+              <MappingFragment StoreEntitySet="Branch">
+                <ScalarProperty Name="IsPassive" ColumnName="IsPassive" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BranchRole">
+            <EntityTypeMapping TypeName="PortalDBModel.BranchRole">
+              <MappingFragment StoreEntitySet="BranchRole">
+                <ScalarProperty Name="IsPassive" ColumnName="IsPassive" />
+                <ScalarProperty Name="UpdateUserID" ColumnName="UpdateUserID" />
+                <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
+                <ScalarProperty Name="CreatedUserID" ColumnName="CreatedUserID" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsUpdate" ColumnName="IsUpdate" />
+                <ScalarProperty Name="IsCreat" ColumnName="IsCreat" />
+                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+                <ScalarProperty Name="BrancID" ColumnName="BrancID" />
+                <ScalarProperty Name="SystemUserID" ColumnName="SystemUserID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InventoryRequest">
+            <EntityTypeMapping TypeName="PortalDBModel.InventoryRequest">
+              <MappingFragment StoreEntitySet="InventoryRequest">
+                <ScalarProperty Name="IsPassive" ColumnName="IsPassive" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="InventoryDescription" ColumnName="InventoryDescription" />
+                <ScalarProperty Name="AddInventoryName" ColumnName="AddInventoryName" />
+                <ScalarProperty Name="InventorySection" ColumnName="InventorySection" />
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InventoryTransactions">
+            <EntityTypeMapping TypeName="PortalDBModel.InventoryTransactions">
+              <MappingFragment StoreEntitySet="InventoryTransactions">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsPassive" ColumnName="IsPassive" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="UpdateDateUserID" ColumnName="UpdateDateUserID" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="InventoryMacAddress" ColumnName="InventoryMacAddress" />
+                <ScalarProperty Name="OtherPrograms" ColumnName="OtherPrograms" />
+                <ScalarProperty Name="UniversalIdentity" ColumnName="UniversalIdentity" />
+                <ScalarProperty Name="InventoryName" ColumnName="InventoryName" />
+                <ScalarProperty Name="InventoryCode" ColumnName="InventoryCode" />
+                <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+                <ScalarProperty Name="BuyDate" ColumnName="BuyDate" />
+                <ScalarProperty Name="TopIp" ColumnName="TopIp" />
+                <ScalarProperty Name="OutIp" ColumnName="OutIp" />
+                <ScalarProperty Name="InIp" ColumnName="InIp" />
+                <ScalarProperty Name="WhichGroup" ColumnName="WhichGroup" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="InventoryID" ColumnName="InventoryID" />
+                <ScalarProperty Name="SystemUserID" ColumnName="SystemUserID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InventoryTransactionValueMap">
+            <EntityTypeMapping TypeName="PortalDBModel.InventoryTransactionValueMap">
+              <MappingFragment StoreEntitySet="InventoryTransactionValueMap">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsPassive" ColumnName="IsPassive" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="ValueId" ColumnName="ValueId" />
+                <ScalarProperty Name="InventoryTransactionId" ColumnName="InventoryTransactionId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Modules">
+            <EntityTypeMapping TypeName="PortalDBModel.Modules">
+              <MappingFragment StoreEntitySet="Modules">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsPassive" ColumnName="IsPassive" />
+                <ScalarProperty Name="Queue" ColumnName="Queue" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pages">
+            <EntityTypeMapping TypeName="PortalDBModel.Pages">
+              <MappingFragment StoreEntitySet="Pages">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsPassive" ColumnName="IsPassive" />
+                <ScalarProperty Name="Queue" ColumnName="Queue" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="PageGuid" ColumnName="PageGuid" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ModulId" ColumnName="ModulId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PermissionRequestForm">
+            <EntityTypeMapping TypeName="PortalDBModel.PermissionRequestForm">
+              <MappingFragment StoreEntitySet="PermissionRequestForm">
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="ApprovedDate" ColumnName="ApprovedDate" />
+                <ScalarProperty Name="IsPassive" ColumnName="IsPassive" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DateFinish" ColumnName="DateFinish" />
+                <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+                <ScalarProperty Name="PermissionStatusID" ColumnName="PermissionStatusID" />
+                <ScalarProperty Name="PermissionTypeID" ColumnName="PermissionTypeID" />
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PermissionStatus">
+            <EntityTypeMapping TypeName="PortalDBModel.PermissionStatus">
+              <MappingFragment StoreEntitySet="PermissionStatus">
+                <ScalarProperty Name="IsPassive" ColumnName="IsPassive" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PermissionType">
+            <EntityTypeMapping TypeName="PortalDBModel.PermissionType">
+              <MappingFragment StoreEntitySet="PermissionType">
+                <ScalarProperty Name="IsPassive" ColumnName="IsPassive" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personel">
+            <EntityTypeMapping TypeName="PortalDBModel.Personel">
+              <MappingFragment StoreEntitySet="Personel">
+                <ScalarProperty Name="IsPassive" ColumnName="IsPassive" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="StartWorkDate" ColumnName="StartWorkDate" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="DepartmanID" ColumnName="DepartmanID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="PortalDBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Types">
+            <EntityTypeMapping TypeName="PortalDBModel.Types">
+              <MappingFragment StoreEntitySet="Types">
+                <ScalarProperty Name="IsPassive" ColumnName="IsPassive" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Value">
+            <EntityTypeMapping TypeName="PortalDBModel.Value">
+              <MappingFragment StoreEntitySet="Value">
+                <ScalarProperty Name="IsPassive" ColumnName="IsPassive" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WhichGroup">
+            <EntityTypeMapping TypeName="PortalDBModel.WhichGroup">
+              <MappingFragment StoreEntitySet="WhichGroup">
+                <ScalarProperty Name="IsPassive" ColumnName="IsPassive" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HolidayTable">
+            <EntityTypeMapping TypeName="PortalDBModel.HolidayTable">
+              <MappingFragment StoreEntitySet="HolidayTable">
+                <ScalarProperty Name="IsPassive" ColumnName="IsPassive" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="NoDays" ColumnName="NoDays" />
+                <ScalarProperty Name="MinAge" ColumnName="MinAge" />
+                <ScalarProperty Name="MaxAge" ColumnName="MaxAge" />
+                <ScalarProperty Name="MaxWorkDays" ColumnName="MaxWorkDays" />
+                <ScalarProperty Name="MinWorkDays" ColumnName="MinWorkDays" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Department">
+            <EntityTypeMapping TypeName="PortalDBModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="IsPassive" ColumnName="IsPassive" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemUser">
+            <EntityTypeMapping TypeName="PortalDBModel.SystemUser">
+              <MappingFragment StoreEntitySet="SystemUser">
+                <ScalarProperty Name="IsSuperAdmin" ColumnName="IsSuperAdmin" />
+                <ScalarProperty Name="IsPassive" ColumnName="IsPassive" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="JopStartDate" ColumnName="JopStartDate" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="PermissionNo" ColumnName="PermissionNo" />
+                <ScalarProperty Name="WhichGroupUserID" ColumnName="WhichGroupUserID" />
+                <ScalarProperty Name="DepartmanID" ColumnName="DepartmanID" />
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SeniorDepartment">
+            <EntityTypeMapping TypeName="PortalDBModel.SeniorDepartment">
+              <MappingFragment StoreEntitySet="SeniorDepartment">
+                <ScalarProperty Name="IsPassive" ColumnName="IsPassive" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="SystemUserID" ColumnName="SystemUserID" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

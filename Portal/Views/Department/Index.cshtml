@@ -1,0 +1,38 @@
+﻿@model Portal.Models.ServiceModelDB.ServiceModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="d-flex justify-content-end m-r-10">
+    <a href="/Department/Create" class="btn btn-success pull-right">Departman Talebi</a>
+
+</div>
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>Departman Adı</th>
+            <th>Departman Sorumlusu</th>
+            <th>Tarih</th>
+            <th colspan="2">İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model.seniorDepartmentList.OrderByDescending(x=>x.Date))
+        {
+            var department = Model.departmentsList.FirstOrDefault(x => x.ID == item.DepartmentID);
+
+            var user = Model.SystemUserList.FirstOrDefault(x => x.ID == item.SystemUserID);
+            <tr>
+                <td>@department.Name</td>
+                <td>@user.Name @user.Surname</td>
+                <td>@item.Date.Value.ToString("dd-MM-yyyy hh:mm")</td>
+                <td><a class="btn btn-primary" href="/AdvanceRequest/Save/@item.ID">Düzenle</a></td>
+                <td><button class="btn btn-danger btnDelete" data-id="@item.ID" data-url="/AdvanceRequest/Delete">Sil</button></td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+

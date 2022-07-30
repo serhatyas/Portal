@@ -1,0 +1,279 @@
+﻿@model Portal.Models.ServiceModelDB.ServiceModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    Portal.Models.EntityFramework.PortalDB db = new Portal.Models.EntityFramework.PortalDB();
+    var userid = Convert.ToInt32(HttpContext.Current.User.Identity.Name);
+    var currentUser = db.SystemUser.FirstOrDefault(x => x.ID == userid);
+
+}
+
+
+<section class="users-view">
+    <!-- users view media object start -->
+    <div class="row">
+        <div class="col-12 col-sm-7">
+            <div class="media mb-2">
+                <a class="mr-1" href="#">
+                    <img src="../../../app-assets/images/portrait/small/profile.png" alt="users view avatar" class="users-avatar-shadow rounded-circle" height="64" width="64">
+                </a>
+                <div class="media-body pt-25">
+                    <h4 class="media-heading"><span class="users-view-name">@currentUser.Name </span><span class="text-muted font-medium-1"> </span><span class="users-view-username text-muted font-medium-1 ">@currentUser.Surname</span></h4>
+                    <span>Mail:</span>
+                    <span class="users-view-id">@currentUser.Mail</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-5 px-0 d-flex justify-content-end align-items-center px-1 mb-2">
+            <a href="#" class="btn btn-sm mr-25 border"><i class="bx bx-envelope font-small-3"></i></a>
+            <a href="#" class="btn btn-sm mr-25 border">Profile</a>
+            <a href="../../../html/ltr/vertical-menu-template/page-users-edit.html" class="btn btn-sm btn-primary">Edit</a>
+        </div>
+    </div>
+    <!-- users view media object ends -->
+    <!-- users view card data start -->
+    <div class="card">
+        <div class="card-content">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 col-md-3">
+                        <table class="table table-borderless">
+                            <tbody>
+                                <tr>
+                                    <td>Adı:</td>
+                                    <td>@currentUser.Name</td>
+                                </tr>
+                                <tr>
+                                    <td>Soyadı:</td>
+                                    <td>@currentUser.Surname</td>
+                                </tr>
+                                <tr>
+                                    <td>E-mail:</td>
+                                    <td>@currentUser.Mail</td>
+                                </tr>
+                                <tr>
+                                    <td>Telefon:</td>
+                                    <td>@currentUser.Phone</td>
+                                </tr>
+                                <tr>
+                                    <td>Şube:</td>
+                                    <td>@currentUser.Branch.Name</td>
+                                </tr>
+                                <tr>
+                                    <td>Grup:</td>
+                                    <td>@currentUser.WhichGroup</td>
+                                </tr>
+                                <tr>
+                                    <td>Durum:</td>
+                                    <td><span class="badge badge-light-success users-view-status">@(currentUser.IsPassive == true ? "Pasif" : "Aktif")</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <div class="table-responsive">
+                            <table class="table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Sayfa Adı</th>
+                                        <th>Alt Sayfa Adı</th>
+                                        <th>Görüntüleme</th>
+                                        <th>Ekleme</th>
+                                        <th>Güncelleme</th>
+                                        <th>Silme</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.authorizationsList.OrderByDescending(x => x.ModuleId))
+                                    {
+                                        var PageID = Model.pagesList.FirstOrDefault(x => x.ID == item.PageID);
+                                        var ModuleID = Model.modulesList.FirstOrDefault(x => x.Id == item.ModuleId);
+                                    <tr>
+                                        <td>@ModuleID.Name</td>
+                                        <td>@PageID.Name</td>
+                                        <td>@(item.IsRead == true ? "Aktif" : "Pasif" )</td>
+                                        <td>@(item.IsCreate == true ? "Aktif" : "Pasif")</td>
+                                        <td>@(item.IsUpdate == true ? "Aktif" : "Pasif")</td>
+                                        <td>@(item.IsDeleted == true ? "Aktif" : "Pasif")</td>
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- users view card data ends -->
+    <!-- users view card details start -->
+    <div class="card">
+        <div class="card-content">
+            <div class="card-body">
+                <div class="row bg-primary bg-lighten-5 rounded mb-2 mx-25 text-center text-lg-left">
+                    <div class="col-12 col-sm-4 p-2">
+                        <h6 class="text-primary mb-0">Posts: <span class="font-large-1 align-middle">125</span></h6>
+                    </div>
+                    <div class="col-12 col-sm-4 p-2">
+                        <h6 class="text-primary mb-0">Followers: <span class="font-large-1 align-middle">534</span></h6>
+                    </div>
+                    <div class="col-12 col-sm-4 p-2">
+                        <h6 class="text-primary mb-0">Following: <span class="font-large-1 align-middle">256</span></h6>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <section id="collapsible">
+                        <h4>Avans Talepler</h4>
+                        <div class="collapsible">
+                            @{
+                                var arrAdvance = Model.advanceRequestsList.ToArray();
+                                for (int i = 0; i < Model.advanceRequestsList.OrderByDescending(x => x.Date).Count(); i++)
+                                {
+
+                                    string collepseID = "collapse" + arrAdvance[i].ID;
+
+                                    var type = Model.advanceRequestsList.FirstOrDefault(x => x.ID == arrAdvance[i].AdvanceTypeID);
+
+                                    <div class="card collapse-header">
+                                        <div id="headingCollapse1" class="card-header" data-toggle="collapse" role="button" data-target="#@collepseID" aria-expanded="false" aria-controls="collapse1">
+                                            <span class="collapse-title">
+                                                @arrAdvance[i].Description
+                                            </span>
+                                        </div>
+                                        <div id="@collepseID" role="tabpanel" aria-labelledby="headingCollapse1" class="collapse">
+                                            <div class="card-content">
+                                                <div class="card-body">
+                                                    <table class="table mb-0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Açıklama</th>
+                                                                <th>Avans Tipi</th>
+                                                                <th>Avans Miktarı</th>
+                                                                <th>Avans Tarihi</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>@arrAdvance[i].Description</td>
+                                                                <td>@arrAdvance[i].AdvanceTypeID</td>
+                                                                <td>@arrAdvance[i].Amount</td>
+                                                                <td>@arrAdvance[i].AdvanceDate.Value.ToString("dd-MM-yyyy hh:mm")</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                } }
+                        </div>
+                        <h4>İzin Talepler</h4>
+                        <div class="collapsible">
+                            @{
+                                var arrPermission = Model.permissionRequestFormsList.ToArray();
+                                for (int i = 0; i < Model.permissionRequestFormsList.OrderByDescending(x => x.Date).Count(); i++)
+                                {
+
+                                    string collepseID = "collapse" + arrPermission[i].ID;
+
+                                    var type = Model.permissionTypesList.FirstOrDefault(x => x.ID == arrPermission[i].PermissionTypeID);
+                                    var status = Model.permissionStatusList.FirstOrDefault(x => x.ID == arrPermission[i].PermissionStatusID);
+
+                                    <div class="card collapse-header">
+                                        <div id="headingCollapse1" class="card-header" data-toggle="collapse" role="button" data-target="#@collepseID" aria-expanded="false" aria-controls="collapse1">
+                                            <span class="collapse-title">
+                                                @arrPermission[i].Description
+                                            </span>
+                                        </div>
+                                        <div id="@collepseID" role="tabpanel" aria-labelledby="headingCollapse1" class="collapse">
+                                            <div class="card-content">
+                                                <div class="card-body">
+                                                    <table class="table mb-0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Açıklama</th>
+                                                                <th>İzin Tipi</th>
+                                                                <th>İzin Durumu</th>
+                                                                <th>İzin Başlangıç Tarihi</th>
+                                                                <th>İzin Bitiş Tarihi</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>@arrPermission[i].Description</td>
+                                                                <td>@arrPermission[i].PermissionStatusID</td>
+                                                                <td>@arrPermission[i].PermissionStatusID</td>
+                                                                <td>@arrPermission[i].DateStart.Value.ToString("dd-MM-yyyy hh:mm")</td>
+                                                                <td>@arrPermission[i].DateFinish.Value.ToString("dd-MM-yyyy hh:mm")</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                } }
+                        </div>
+                        <h4>Envanter Talepler</h4>
+                        <div class="collapsible">
+                            @{
+                                var arrInventory = Model.inventoryRequestsList.ToArray();
+                                for (int i = 0; i < Model.inventoryRequestsList.OrderByDescending(x => x.Date).Count(); i++)
+                                {
+
+                                    string collepseID = "collapse" + arrInventory[i].ID;
+
+                                    var type = Model.ValueList.FirstOrDefault(x => x.ID == arrInventory[i].InventorySection);
+
+                                    <div class="card collapse-header">
+                                        <div id="headingCollapse1" class="card-header" data-toggle="collapse" role="button" data-target="#@collepseID" aria-expanded="false" aria-controls="collapse1">
+                                            <span class="collapse-title">
+                                                @arrInventory[i].Description
+                                            </span>
+                                        </div>
+                                        <div id="@collepseID" role="tabpanel" aria-labelledby="headingCollapse1" class="collapse">
+                                            <div class="card-content">
+                                                <div class="card-body">
+                                                    <table class="table mb-0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Açıklama</th>
+                                                                <th>İzin Tipi</th>
+                                                                <th>İzin Durumu</th>
+                                                                <th>İzin Başlangıç Tarihi</th>
+                                                                <th>İzin Bitiş Tarihi</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>@type.Name</td>
+                                                                <td>@arrInventory[i].InventoryDescription</td>
+                                                                <td>@arrInventory[i].AddInventoryName</td>
+                                                                <td>@arrInventory[i].Date.Value.ToString("dd-MM-yyyy hh:mm")</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                } }
+                        </div>
+                    </section>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- users view card details ends -->
+    <div class="card">
+        <div class="row">
+            
+        </div>
+    </div>
+</section>
+
+
+

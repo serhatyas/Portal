@@ -1,0 +1,79 @@
+﻿@model Portal.Models.ServiceModelDB.ServiceModel
+
+@{
+    ViewBag.Title = "details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <h4>@Model.inventoryTransactions.InventoryName'in Detayı</h4>
+
+</div>
+
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>Başlık</th>
+            <th>Detay</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model.inventoryTransactionValueMapsList)
+        {
+            <tr>
+                <td>@item.TypeName</td>
+                <td>@item.Value.Name</td>
+            </tr>
+}
+        <tr>
+            <td>Envanter Adı</td>
+            <td>@Model.inventoryTransactions.InventoryName</td>
+        </tr>
+        <tr>
+            <td>İlk Kayıt Oluşturan</td>
+            <td>@Model.inventoryTransactions.CreateUser</td>
+        </tr>
+        <tr>
+            <td>İç IP</td>
+            <td>@Model.inventoryTransactions.InIp</td>
+        </tr>
+        <tr>
+            <td>Dış IP</td>
+            <td>@Model.inventoryTransactions.OutIp</td>
+        </tr>
+        <tr>
+            <td>Üst IP</td>
+            <td>@Model.inventoryTransactions.TopIp</td>
+        </tr>
+        <tr>
+            <td>Kayıt Tarihi</td>
+            <td>@Model.inventoryTransactions.CreateDate.Value.ToString("dd-MM-yyyy hh:mm")</td>
+        </tr>
+        <tr>
+            <td>Fatura No</td>
+            <td>@Model.inventoryTransactions.InvoiceNo</td>
+        </tr>
+        <tr>
+            <td>Envanter Kodu</td>
+            <td>@Model.inventoryTransactions.InventoryCode</td>
+        </tr>
+        <tr>
+            <td>Envanter Mac Adresi</td>
+            <td>@Model.inventoryTransactions.InventoryMacAddress</td>
+        </tr>
+        <tr>
+            <td>Diğer Programlar</td>
+            <td>@Model.inventoryTransactions.OtherPrograms</td>
+        </tr>
+        <tr>
+            <td>Açıklama</td>
+            <td>@Model.inventoryTransactions.Description</td>
+        </tr>
+        <tr>
+            <td>BELGE</td>
+            <td><a href="@Model.inventoryTransactions.Path">Belge Görüntüle</a></td>
+        </tr>
+    </tbody>
+
+</table>

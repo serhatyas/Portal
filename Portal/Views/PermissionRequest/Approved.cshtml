@@ -1,0 +1,22 @@
+﻿@model Portal.Models.ServiceModelDB.ServiceModel
+@{
+    ViewBag.Title = "Approved";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="">
+    <p>@(Model.SystemUser.Name+" "+Model.SystemUser.Surname) adlı personel sizden @(Model.permissionRequestForm.DateStart.Value.ToString("dd-MM-yyyy")+" // "+Model.permissionRequestForm.DateFinish.Value.ToString("dd-MM-yyyy")) tarihleri arasında sizden @Model.permissionRequestForm.PermissionStatus.Name izin talep ediyor.</p>
+    <p>İzin Açıklaması:@(Model.permissionRequestForm.Description)</p>
+    <div class="row">
+        <div class="d-flex justify-content-center">
+            <div class="col-6">
+                <a  href="/permissionrequest/ApprovedSuccess?permissionid=@Model.permissionRequestForm.ID&result=1"  class="btn btn-success">Onayla</a>
+
+            </div>
+            <div class="col-6">
+                <a href="/permissionrequest/ApprovedSuccess?permissionid=@Model.permissionRequestForm.ID&result=0" class="btn btn-danger">Reddet</a>
+
+            </div>
+        </div>
+    </div>
+</div>

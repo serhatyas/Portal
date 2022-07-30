@@ -1,0 +1,49 @@
+﻿@model Portal.Models.ServiceModelDB.ServiceModel
+@{
+    ViewBag.Title = "Save";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Envanter Talep Ekle</h2>
+
+<div class="container-fluid">
+    <div class="col-12">
+        <form action="/InventoryRequest/Save" method="post" class="col-md-12">
+            @Html.HiddenFor(x => x.inventoryRequest.ID)
+            <div class="row">
+                <div class="col-12">
+                    <div class="col-12">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>Envanter Listesi</label>
+                                @Html.DropDownListFor(x => x.inventoryRequest.InventorySection, new SelectList(Model.ValueList, "ID", "Name"), "Envanter Seçiniz", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.Value.Name)
+                            </div>
+                            <div class="form-group">
+                                <label>Liste Dışı Envanter Ekeleme</label>
+                                @Html.TextBoxFor(x => x.inventoryRequest.AddInventoryName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.inventoryRequest.AddInventoryName)
+                            </div>
+                            <div class="form-group">
+                                <label>Envanter Açıklaması</label>
+                                @Html.TextBoxFor(x => x.inventoryRequest.InventoryDescription, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.inventoryRequest.InventoryDescription)
+                            </div>
+                            <div class="form-group">
+                                <label>Açıklama</label>
+                                @Html.TextBoxFor(x => x.inventoryRequest.Description, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.inventoryRequest.Description)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-success" type="submit">Kaydet</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

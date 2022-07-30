@@ -1,0 +1,27 @@
+﻿.classUploads {
+    padding: 11px 10px;
+    height: 50px;
+}
+
+.table th, .table td {
+    padding: 1.15rem 1.5rem !important;
+}
+
+.rowStyle {
+    margin-top: 60px;
+}
+
+.checkStyle {
+    position: relative;
+    z-index: 9;
+}
+
+    .checkStyle label {
+        position: absolute;
+        z-index: -1;
+        top: -25px;
+        left: calc(50% - 159px);
+        display: block;
+        width: 100%;
+        text-align:center;
+    }

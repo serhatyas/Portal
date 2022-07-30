@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="36371b31a1b3415599c3688655b73171" Name="Diagram1" ZoomLevel="67">
+        <EntityTypeShape EntityType="PortalDBModel.AdvanceRequestForm" Width="1.5" PointX="3" PointY="14.25" />
+        <EntityTypeShape EntityType="PortalDBModel.AdvanceType" Width="1.5" PointX="0.75" PointY="18.875" />
+        <EntityTypeShape EntityType="PortalDBModel.Authorizations" Width="1.5" PointX="8.25" PointY="18.875" />
+        <EntityTypeShape EntityType="PortalDBModel.Branch" Width="1.5" PointX="0.75" PointY="14.5" />
+        <EntityTypeShape EntityType="PortalDBModel.BranchRole" Width="1.5" PointX="0.5" PointY="29.125" />
+        <EntityTypeShape EntityType="PortalDBModel.InventoryRequest" Width="1.5" PointX="3" PointY="10.25" />
+        <EntityTypeShape EntityType="PortalDBModel.InventoryTransactions" Width="1.5" PointX="5.25" PointY="18.75" />
+        <EntityTypeShape EntityType="PortalDBModel.InventoryTransactionValueMap" Width="1.5" PointX="10.5" PointY="20.5" />
+        <EntityTypeShape EntityType="PortalDBModel.Modules" Width="1.5" PointX="6" PointY="10.5" />
+        <EntityTypeShape EntityType="PortalDBModel.Pages" Width="1.5" PointX="6" PointY="26" />
+        <EntityTypeShape EntityType="PortalDBModel.PermissionRequestForm" Width="1.5" PointX="6" PointY="14.125" />
+        <EntityTypeShape EntityType="PortalDBModel.PermissionStatus" Width="1.5" PointX="3.75" PointY="26.25" />
+        <EntityTypeShape EntityType="PortalDBModel.PermissionType" Width="1.5" PointX="3.75" PointY="7.5" />
+        <EntityTypeShape EntityType="PortalDBModel.Personel" Width="1.5" PointX="3.375" PointY="29.5" />
+        <EntityTypeShape EntityType="PortalDBModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PortalDBModel.Types" Width="1.5" PointX="1.5" PointY="6.875" />
+        <EntityTypeShape EntityType="PortalDBModel.Value" Width="1.5" PointX="0.75" PointY="10.625" />
+        <EntityTypeShape EntityType="PortalDBModel.WhichGroup" Width="1.5" PointX="0.625" PointY="26.75" />
+        <AssociationConnector Association="PortalDBModel.FK_AdvanceRequestForm_AdvanceType" />
+        <AssociationConnector Association="PortalDBModel.FK_AdvanceRequestForm_Branch" />
+        <AssociationConnector Association="PortalDBModel.FK_Authorizations_Modules" />
+        <AssociationConnector Association="PortalDBModel.FK_Authorizations_Pages" />
+        <AssociationConnector Association="PortalDBModel.FK_BranchRole_Branch" />
+        <AssociationConnector Association="PortalDBModel.FK_InventoryRequest_Branch" />
+        <AssociationConnector Association="PortalDBModel.FK_PermissionRequestForm_Branch" />
+        <AssociationConnector Association="PortalDBModel.FK_InventoryRequest_Value" />
+        <AssociationConnector Association="PortalDBModel.FK_InventoryTransactions_WhichGroup" />
+        <AssociationConnector Association="PortalDBModel.FK_InventoryTransactionValueMap_InventoryTransactions" />
+        <AssociationConnector Association="PortalDBModel.FK_InventoryTransactionValueMap_Value" />
+        <AssociationConnector Association="PortalDBModel.FK_Pages_Modules" />
+        <AssociationConnector Association="PortalDBModel.FK_PermissionRequestForm_PermissionStatus" />
+        <AssociationConnector Association="PortalDBModel.FK_PermissionRequestForm_PermissionType" />
+        <AssociationConnector Association="PortalDBModel.FK_Value_Types" />
+        <EntityTypeShape EntityType="PortalDBModel.HolidayTable" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="PortalDBModel.Department" Width="1.5" PointX="10.125" PointY="30.375" />
+        <EntityTypeShape EntityType="PortalDBModel.SystemUser" Width="1.5" PointX="13.375" PointY="26.25" />
+        <AssociationConnector Association="PortalDBModel.FK_Authorizations_SystemUser" />
+        <AssociationConnector Association="PortalDBModel.FK_SystemUser_Branch" />
+        <AssociationConnector Association="PortalDBModel.FK_Personel_Department" />
+        <AssociationConnector Association="PortalDBModel.FK_SystemUser_Department" />
+        <AssociationConnector Association="PortalDBModel.FK_InventoryTransactions_SystemUser" />
+        <AssociationConnector Association="PortalDBModel.FK_SystemUser_WhichGroup" />
+        <EntityTypeShape EntityType="PortalDBModel.SeniorDepartment" Width="1.5" PointX="15.625" PointY="28.375" />
+        <AssociationConnector Association="PortalDBModel.FK_SeniorDepartment_Department" />
+        <AssociationConnector Association="PortalDBModel.FK_SeniorDepartment_SystemUser" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

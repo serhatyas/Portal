@@ -1,0 +1,42 @@
+﻿@model Portal.Models.ServiceModelDB.ServiceModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Ünvan Oluştur</h2>
+
+<div class="container-fluid">
+    <div class="col-12">
+        <form action="/Senior/Create" method="post" class="col-md-12">
+            @Html.HiddenFor(x => x.seniorTable.ID)
+            <div class="row">
+                <div class="col-12">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label>Departman Adı</label>
+                            @Html.DropDownListFor(x => x.seniorTable.DepartmentID, new SelectList(Model.departmentsList, "ID", "Name"), "Departmanlar", new { @class = "form-control", required = "required" })
+                            @Html.ValidationMessageFor(x => x.department.Name)
+                        </div>
+                        <div class="form-group">
+                            <label>Kullanıcı Adı</label>
+                            @Html.DropDownListFor(x => x.seniorTable.SystemUserID, new SelectList(Model.SystemUserList, "ID", "Name"), "Kullanıcılar", new { @class = "form-control", required = "required" })
+                            @Html.ValidationMessageFor(x => x.SystemUser.Name)
+                        </div>
+                        <div class="form-group">
+
+                            @Html.TextBoxFor(x => x.seniorTable.DepartmentSeniority, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.seniorTable.DepartmentSeniority)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-success" type="submit">Kaydet</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

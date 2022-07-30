@@ -1,0 +1,102 @@
+﻿@model Portal.Models.ServiceModelDB.ServiceModel
+@using Portal.Enums
+@{
+    ViewBag.Title = "Save";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="col-12">
+        <form action="/DataProcessing/Save" enctype="multipart/form-data" method="post" class="col-md-12">
+            @Html.HiddenFor(x => x.inventoryTransactions.ID)
+            <div class="row">
+                <div class="col-12">
+                    <div class="col-12">
+                        @for (int i = 0; i < Model.TypeList.Count; i++)
+                        {
+                            var selectedItem = Model.inventoryTransactionValueMapsList.FirstOrDefault(x => x.TypeName.Trim() == Model.TypeList[i].Name.Trim());
+                            if (selectedItem == null)
+                            {
+                                selectedItem = new Portal.Models.EntityFramework.InventoryTransactionValueMap();
+                                selectedItem.ValueId = 0;
+                            }
+                            <label>@Model.TypeList[i].Name</label>
+                            @Html.DropDownListFor(x => x.inventoryTransactionValueMapsList[i].ValueId, new SelectList(Model.ValueList.Where(x => x.TypeID == Model.TypeList[i].ID).ToList(), "ID", "Name", selectedItem.ValueId), "Seçiniz", new { @class = "form-control" })
+                        }
+                        <div class="form-group">
+                            <label>Kişi Seçiniz</label>
+                            @Html.DropDownListFor(x => x.inventoryTransactions.SystemUserID, new SelectList(Model.SystemUserList, "Id", "Name"), "Kişi Seçiniz", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.SystemUser.Name)
+                        </div>
+                        <div class="form-group">
+                            <label>İç IP</label>
+                            @Html.TextBoxFor(x => x.inventoryTransactions.InIp, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.inventoryTransactions.InIp)
+                        </div>
+                        <div class="form-group">
+                            <label>Dış IP</label>
+                            @Html.TextBoxFor(x => x.inventoryTransactions.OutIp, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.inventoryTransactions.OutIp)
+                        </div>
+                        <div class="form-group">
+                            <label>Üst IP</label>
+                            @Html.TextBoxFor(x => x.inventoryTransactions.TopIp, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.inventoryTransactions.TopIp)
+                        </div>
+                        <div class="form-group">
+                            <label>Kayıt Tarih</label>
+                            @Html.TextBoxFor(x => x.inventoryTransactions.BuyDate, new { @class = "form-control", type = "date" })
+                        </div>
+                        <div class="form-group">
+                            <label>Fatura No</label>
+                            @Html.TextBoxFor(x => x.inventoryTransactions.InvoiceNo, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.inventoryTransactions.InvoiceNo)
+                        </div>
+                        <div class="form-group">
+                            <label>Envanter Kodu</label>
+                            @Html.TextBoxFor(x => x.inventoryTransactions.InventoryCode, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.inventoryTransactions.InventoryCode)
+                        </div>
+                        <div class="form-group">
+                            <label>Envanter Adı</label>
+                            @Html.TextBoxFor(x => x.inventoryTransactions.InventoryName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.inventoryTransactions.InventoryName)
+                            <div class="form-group">
+                                <label>Evrensel Kimlik</label>
+                                @Html.TextBoxFor(x => x.inventoryTransactions.UniversalIdentity, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.inventoryTransactions.UniversalIdentity)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Envanter MAC Adresi</label>
+                            @Html.TextBoxFor(x => x.inventoryTransactions.InventoryMacAddress, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.inventoryTransactions.InventoryMacAddress)
+                        </div>
+                        <div class="form-group">
+                            <label>Diğer Programlar</label>
+                            @Html.TextBoxFor(x => x.inventoryTransactions.OtherPrograms, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.inventoryTransactions.OtherPrograms)
+                        </div>
+                        <div class="form-group">
+                            <label>Açıklama</label>
+                            @Html.TextBoxFor(x => x.inventoryTransactions.Description, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.inventoryTransactions.Description)
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                Belge
+                            </label>
+                            <input type="file" name="file" value="" class="form-control classUploads" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-success" type="submit">Kaydet</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

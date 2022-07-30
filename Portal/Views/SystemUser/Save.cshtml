@@ -1,0 +1,395 @@
+﻿@model Portal.Models.ServiceModelDB.ServiceModel
+@{
+    ViewBag.Title = "Save";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Kullanıcı Oluştur</h2>
+
+<section class="users-edit">
+    <div class="card">
+        <div class="card-content">
+            <div class="card-body">
+                <ul class="nav nav-tabs mb-2" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center active" id="account-tab" data-toggle="tab" href="#account" aria-controls="account" role="tab" aria-selected="true">
+                            <i class="bx bx-user mr-25"></i><span class="d-none d-sm-block">Account</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" id="information-tab" data-toggle="tab" href="#information" aria-controls="information" role="tab" aria-selected="false">
+                            <i class="bx bx-info-circle mr-25"></i><span class="d-none d-sm-block">Information</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active fade show" id="account" aria-labelledby="account-tab" role="tabpanel">
+                        <!-- users edit media object start -->
+                        <div class="media mb-2">
+                            <a class="mr-2" href="#">
+                                <img src="../../../app-assets/images/portrait/small/avatar-s-26.jpg" alt="users avatar" class="users-avatar-shadow rounded-circle" height="64" width="64">
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading">Avatar</h4>
+                                <div class="col-12 px-0 d-flex">
+                                    <a href="#" class="btn btn-sm btn-primary mr-25">Change</a>
+                                    <a href="#" class="btn btn-sm btn-light-secondary">Reset</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- users edit media object ends -->
+                        <!-- users edit account form start -->
+                        <form novalidate action="/SystemUser/Save" method="post">
+                            @Html.HiddenFor(x => x.SystemUser.ID)
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="d-flex justify-content-end">
+                                        <button class="btn btn-success" type="submit">Kaydet</button>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <div class="controls">
+                                            <label>Ad</label>
+                                            @Html.TextBoxFor(x => x.SystemUser.Name, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(x => x.SystemUser.Name)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="controls">
+                                            <label>Soyad</label>
+                                            @Html.TextBoxFor(x => x.SystemUser.Surname, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(x => x.SystemUser.Surname)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="controls">
+                                            <label>Mail</label>
+                                            @Html.TextBoxFor(x => x.SystemUser.Mail, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(x => x.SystemUser.Mail)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="controls">
+                                            <label>Şifre</label>
+                                            @Html.TextBoxFor(x => x.SystemUser.Password, new { @class = "form-control", type = "Password" })
+                                            @Html.ValidationMessageFor(x => x.SystemUser.Password)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="controls">
+                                            <label>Telefon</label>
+                                            @Html.TextBoxFor(x => x.SystemUser.Phone, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(x => x.SystemUser.Phone)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>İzin Süresi</label>
+                                        @Html.TextBoxFor(x => x.SystemUser.PermissionNo, new { @class = "form-control touchspin",style="text-align:center;", Type = "text", value = "1.000" })
+                                        @Html.ValidationMessageFor(x => x.SystemUser.PermissionNo)
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <div class="controls">
+                                            <label>Şube Adı</label>
+                                            @Html.DropDownListFor(x => x.SystemUser.BranchID, new SelectList(Model.branchList, "ID", "Name"), "Şube Seçiniz", new { @class = "form-control", required = "required" })
+                                            @Html.ValidationMessageFor(x => x.branch.Name)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="controls">
+                                            <label>Departman Adı</label>
+                                            @Html.DropDownListFor(x => x.SystemUser.DepartmanID, new SelectList(Model.departmentsList, "ID", "Name"), "Departman Seçiniz", new { @class = "form-control", required = "required" })
+                                            @Html.ValidationMessageFor(x => x.department.Name)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="controls">
+                                            <label>Grup Adı</label>
+                                            @Html.DropDownListFor(x => x.SystemUser.WhichGroupUserID, new SelectList(Model.whichGroupsList, "ID", "Name"), "Grup Seçiniz", new { @class = "form-control", required = "required" })
+                                            @Html.ValidationMessageFor(x => x.whichGroup.Name)
+                                        </div>
+                                    </div>
+                                    <div class="mb-1">
+                                        <h6>Doğum Tarihi</h6>
+                                        <fieldset class="form-group position-relative has-icon-left">
+                                            @Html.TextBoxFor(x => x.SystemUser.BirthDate, new
+                                            {
+                                                @class = "form-control pickadate-months-year",
+                                                type = "date",
+                                                required = "required",
+                                                placeholder = "Doğum tarihi"
+                                            })
+                                            <div class="form-control-position">
+                                                <i class='bx bx-calendar'></i>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <div class="mb-1">
+                                        <h6>İşe Başlama Tarihi</h6>
+                                        <fieldset class="form-group position-relative has-icon-left">
+                                            @*<input type="text" class="form-control pickadate-translations" placeholder="Select Date">*@
+                                            @Html.TextBoxFor(x => x.SystemUser.JopStartDate, new
+                                       {
+                                           @class = "form-control pickdate pickadate-months-year",
+                                                type = "date",
+                                           required = "required",
+                                           placeholder = "İş başlangıç tarihi"
+                                       })
+                                            <div class="form-control-position">
+                                                <i class='bx bx-calendar'></i>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="controls">
+                                            <label>Super Admin</label>
+                                            <div class="checkbox">
+                                                @Html.CheckBoxFor(x => x.authorizations.IsRead, new { @class = "checkbox-input", id = "users-checkbox1" })
+                                                <label for="users-checkbox1"></label>
+                                                @Html.ValidationMessageFor(x => x.authorizations.IsRead)
+                                                @*<input type="checkbox" id="users-checkbox1" class="checkbox-input" checked>
+                                                    <label for="users-checkbox1"></label>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="table-responsive">
+                                        <table class="table mt-1">
+
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>Module Permission</th>
+                                                    <th>Page Permission</th>
+                                                    <th>Read</th>
+                                                    <th>Write</th>
+                                                    <th>Create</th>
+                                                    <th>Delete</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @{ string createcss, readcss, updatecss, deletecss = "";}
+                                                @for (int i = 0; i < Model.authorizationsList.Count; i++)
+                                                {
+                                                    var modul = Model.modulesList.FirstOrDefault(x => x.Id == Model.authorizationsList[i].ModuleId);
+                                                    var page = Model.pagesList.FirstOrDefault(x => x.ID == Model.authorizationsList[i].PageID);
+                                                    createcss = "createcss" + i;
+                                                    updatecss = "updatecss" + i;
+                                                    readcss = "readcss" + i;
+                                                    deletecss = "deletecss" + i;
+                                                    @Html.HiddenFor(x => x.authorizationsList[i].ModuleId)
+                                                    @Html.HiddenFor(x => x.authorizationsList[i].PageID)
+                                                    <tr>
+                                                        <td></td>
+                                                        <td>@modul.Name</td>
+                                                        <td>@page.Name</td>
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                @Html.CheckBoxFor(x => x.authorizationsList[i].IsRead, new { @class = "checkbox-input", id = readcss })
+
+                                                                <label for="@readcss"></label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                @Html.CheckBoxFor(x => x.authorizationsList[i].IsCreate, new { @class = "checkbox-input", id = createcss })
+
+                                                                <label for="@createcss"></label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                @Html.CheckBoxFor(x => x.authorizationsList[i].IsUpdate, new { @class = "checkbox-input", id = updatecss })
+
+                                                                <label for="@updatecss"></label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                @Html.CheckBoxFor(x => x.authorizationsList[i].IsDeleted, new { @class = "checkbox-input", id = deletecss })
+
+                                                                <label for="@deletecss"></label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                }
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-1">
+                                    <button type="submit" class="btn btn-primary glow mb-1 mb-sm-0 mr-0 mr-sm-1">
+                                        Save
+                                        changes
+                                    </button>
+                                    <button type="reset" class="btn btn-light">Cancel</button>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- users edit account form ends -->
+                    </div>
+                    <div class="tab-pane fade show" id="information" aria-labelledby="information-tab" role="tabpanel">
+                        <!-- users edit Info form start -->
+                        <form novalidate>
+                            <div class="row">
+                                <div class="col-12 col-sm-6">
+                                    <h5 class="mb-1"><i class="bx bx-link mr-25"></i>Social Links</h5>
+                                    <div class="form-group">
+                                        <label>Twitter</label>
+                                        <input class="form-control" type="text" value="https://www.twitter.com/">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Facebook</label>
+                                        <input class="form-control" type="text" value="https://www.facebook.com/">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Google+</label>
+                                        <input class="form-control" type="text">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>LinkedIn</label>
+                                        <input class="form-control" type="text">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Instagram</label>
+                                        <input class="form-control" type="text" value="https://www.instagram.com/">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6 mt-1 mt-sm-0">
+                                    <h5 class="mb-1"><i class="bx bx-user mr-25"></i>Personal Info</h5>
+                                    <div class="form-group">
+                                        <div class="controls position-relative">
+                                            <label>Birth date</label>
+                                            <input type="text" class="form-control birthdate-picker" required placeholder="Birth date" data-validation-required-message="This birthdate field is required">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Country</label>
+                                        <select class="form-control" id="accountSelect">
+                                            <option>USA</option>
+                                            <option>India</option>
+                                            <option>Canada</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Languages</label>
+                                        <select class="form-control" id="users-language-select2" multiple="multiple">
+                                            <option value="English" selected>English</option>
+                                            <option value="Spanish">Spanish</option>
+                                            <option value="French">French</option>
+                                            <option value="Russian">Russian</option>
+                                            <option value="German">German</option>
+                                            <option value="Arabic" selected>Arabic</option>
+                                            <option value="Sanskrit">Sanskrit</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="controls">
+                                            <label>Phone</label>
+                                            <input type="text" class="form-control" required placeholder="Phone number" value="(+656) 254 2568" data-validation-required-message="This phone number field is required">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="controls">
+                                            <label>Address</label>
+                                            <input type="text" class="form-control" placeholder="Address" data-validation-required-message="This Address field is required">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Website</label>
+                                        <input type="text" class="form-control" placeholder="Website address">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Favourite Music</label>
+                                        <select class="form-control" id="users-music-select2" multiple="multiple">
+                                            <option value="Rock">Rock</option>
+                                            <option value="Jazz" selected>Jazz</option>
+                                            <option value="Disco">Disco</option>
+                                            <option value="Pop">Pop</option>
+                                            <option value="Techno">Techno</option>
+                                            <option value="Folk" selected>Folk</option>
+                                            <option value="Hip hop">Hip hop</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Favourite movies</label>
+                                        <select class="form-control" id="users-movies-select2" multiple="multiple">
+                                            <option value="The Dark Knight" selected>
+                                                The Dark Knight
+                                            </option>
+                                            <option value="Harry Potter" selected>Harry Potter</option>
+                                            <option value="Airplane!">Airplane!</option>
+                                            <option value="Perl Harbour">Perl Harbour</option>
+                                            <option value="Spider Man">Spider Man</option>
+                                            <option value="Iron Man" selected>Iron Man</option>
+                                            <option value="Avatar">Avatar</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-1">
+                                    <button type="submit" class="btn btn-primary glow mb-1 mb-sm-0 mr-0 mr-sm-1">
+                                        Save
+                                        changes
+                                    </button>
+                                    <button type="reset" class="btn btn-light">Cancel</button>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- users edit Info form ends -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts {
+    <script src="https://cdn.ckeditor.com/4.16.0/full-all/ckeditor.js"></script>
+
+    <script>
+        CKEDITOR.replace('editor', {
+            toolbar: 'Full',
+            toolbar_Full:
+                [
+                    { name: 'document', items: ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates'] },
+                    { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
+                    { name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll', '-', 'SpellChecker', 'Scayt'] },
+                    {
+                        name: 'forms', items: ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton',
+                            'HiddenField']
+                    },
+                    '/',
+                    { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
+                    {
+                        name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv',
+                            '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl']
+                    },
+                    { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
+                    { name: 'insert', items: ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe'] },
+                    '/',
+                    { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize'] },
+                    { name: 'colors', items: ['TextColor', 'BGColor'] },
+                    { name: 'tools', items: ['Maximize', 'ShowBlocks', '-', 'About'] }
+                ],
+            extraPlugins: 'iframe',
+            enterMode: CKEDITOR.ENTER_BR,
+            shiftEnterMode: CKEDITOR.ENTER_P,
+            filebrowserBrowseUrl: 'assets/plugins/ckfinder/ckfinder.html',
+            filebrowserUploadUrl: 'assets/plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
+        });
+
+
+    </script>
+
+
+}
+

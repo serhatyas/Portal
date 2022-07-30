@@ -1,0 +1,10 @@
+.homePageStyle {
+    border-radius: 0.267rem;
+    border: 1px solid #DFE3E7;
+    background-color: #fafbfb;
+    transition: none;
+}
+
+.imgStyle{
+    width:100%;
+}

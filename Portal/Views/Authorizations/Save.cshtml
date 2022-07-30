@@ -1,0 +1,64 @@
+﻿@model  Portal.Models.ServiceModelDB.ServiceModel
+@{
+    ViewBag.Title = "Save";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Rolleme Ekle</h2>
+
+<div class="container-fluid">
+    <div class="col-12">  
+            <form action="/Authorizations/Save" method="post" class="col-md-12">
+                @Html.HiddenFor(x => x.authorizations.ID)
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label>Module Listesi</label>
+                            @Html.DropDownListFor(x => x.authorizations.ModuleId, new SelectList(Model.modulesList, "ID", "Name"), "Module Seçiniz", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.modules.Name)
+                        </div>
+                        <div class="form-group">
+                            <label>Sayfa Listesi</label>
+                            @Html.DropDownListFor(x => x.authorizations.PageID, new SelectList(Model.pagesList, "ID", "Name"), "Sayfa Seçiniz", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.pages.Name)
+                        </div>
+                        <div class="form-group">
+                            <label>Kullanıcı Listesi</label>
+                            @Html.DropDownListFor(x => x.authorizations.UserID, new SelectList(Model.SystemUserList, "ID", "Name"), "Kullanıcı Seçiniz", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.SystemUser.Name)
+                        </div>
+                        <div class="form-group">
+                            <div class="row rowStyle">
+                                <div class="col-3 checkStyle">
+                                    <label>Görüntüleme Yetkisi</label>
+                                    @Html.CheckBoxFor(x => x.authorizations.IsRead, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(x => x.authorizations.IsRead)
+                                </div>
+                                <div class="col-3  checkStyle">
+                                    <label>Ekleme Yetkisi</label>
+                                    @Html.CheckBoxFor(x => x.authorizations.IsCreate, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(x => x.authorizations.IsCreate)
+                                </div>
+                                <div class="col-3  checkStyle">
+                                    <label>Güncelleme Yetkisi</label>
+                                    @Html.CheckBoxFor(x => x.authorizations.IsUpdate, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(x => x.authorizations.IsUpdate)
+                                </div>
+                                <div class="col-3 checkStyle">
+                                    <label>Silme Yetkisi</label>
+                                    @Html.CheckBoxFor(x => x.authorizations.IsDeleted, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(x => x.authorizations.IsDeleted)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-12">
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-success" type="submit">Kaydet</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+</div>

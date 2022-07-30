@@ -1,0 +1,53 @@
+﻿@model Portal.Models.ServiceModelDB.ServiceModel
+@using Portal.Models.EntityFramework
+
+@{
+    ViewBag.Title = "Save";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>İzin Ekle</h2>
+
+<div class="container-fluid">
+    <div class="col-12">
+        <form action="/PermissionRequest/Save" method="post" class="col-md-12">
+            @Html.HiddenFor(x => x.permissionRequestForm.ID)
+            <div class="row">
+                <div class="col-12">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label>İzin Durumu</label>
+                            @Html.DropDownListFor(x => x.permissionRequestForm.PermissionStatusID, new SelectList(Model.permissionStatusList, "ID", "Name"), "İzin Durumu", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.permissionStatus.Name)
+                        </div>
+                        <div class="form-group">
+                            <label>İzin Seçenekleri</label>
+                            @Html.DropDownListFor(x => x.permissionRequestForm.PermissionTypeID, new SelectList(Model.permissionTypesList, "ID", "Name"), "İzin Seçenekleri", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.permissionStatus.Name)
+                        </div>
+                        <div class="form-group">
+                            <label>İzin Başlangıç Tarihi</label>
+                            @Html.TextBoxFor(x => x.permissionRequestForm.DateStart, new { @class = "form-control", @Value = Model.permissionRequestForm.DateStart.Value.ToString("yyyy-MM-dd"), type = "date", required = "required" })
+                        </div>
+                        <div class="form-group">
+                            <label>İzin Bitiş Tarihi</label>
+                            @Html.TextBoxFor(x => x.permissionRequestForm.DateFinish, new { @class = "form-control", @Value = Model.permissionRequestForm.DateFinish.Value.ToString("yyyy-MM-dd"), type = "date", required = "required" })
+                        </div>
+                        <div class="form-group">
+                            <label>Açıklama</label>
+                            @Html.TextBoxFor(x => x.permissionRequestForm.Description, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.permissionRequestForm.Description)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-success" type="submit">Kaydet</button>
+                    </div>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</div>
